@@ -8,5 +8,9 @@ requests
 raven
 sentry_sdk
 django-staff-sso-client
+django-govuk-template
+django-govuk-forms
+libsass
+scss
 whitenoise
 gunicorn

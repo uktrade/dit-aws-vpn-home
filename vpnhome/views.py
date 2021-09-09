@@ -14,3 +14,11 @@ class home_page(View):
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class ovpn_page(View):
+    template_name = 'downloads/aws-ci-vpn.ovpn'
+
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, content_type='text/plain')

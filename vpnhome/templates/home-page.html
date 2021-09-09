@@ -1,9 +1,61 @@
 <!-- <!DOCTYPE html> -->
 
-{% block inner_content %}
-        <div class ="page-body">
-          <p></p>
-          Hi, welcome to vpn-home
-          <p></p>
+{% extends 'govuk_template.html' %}
 
+{% block inner_content %}
+<div class ="page-body">
+    <br>
+    <h1 style="font-size:30px">
+      Welcome to the DIT vpn download page.
+    </h1>
+    <br><br>
+
+    <p style="font-size:22px"><span style="font-weight:bold">Step 1.</span>Download the vpn client for your OS and install.</p>
+    <p></p>
+
+    <div>
+        <p style="font-size:25px"><span style="font-weight:bold">VPN Clients</span></p>
+
+        <p style="font-size:20px">AWS Client VPN for Windows</p>
+        <p></p>
+        <a href="https://d20adtppz83p9s.cloudfront.net/WPF/latest/AWS_VPN_Client.msi" download>
+            <button type="submit" class="button">Download</button>
+        </a>
+        <p></p>
+        <br>
+
+        <p style="font-size:20px">AWS Client VPN for OSX</p>
+        <p></p>
+        <a href="https://d20adtppz83p9s.cloudfront.net/OSX/latest/AWS_VPN_Client.pkg" download>
+            <button type="submit" class="button">Download</button>
+        </a>
+        <p></p>
+        <br>
+
+        <p style="font-size:20px">AWS Client VPN for Linux</p>
+        <p></p>
+        <a href="https://d20adtppz83p9s.cloudfront.net/GTK/latest/awsvpnclient_amd64.deb" download>
+            <button type="submit" class="button">Download</button>
+        </a>
+
+      </div>
+      <br><br><br>
+
+      <p style="font-size:22px"><span style="font-weight:bold">Step 2.</span>Download the client config and import into the installed client.</p>
+      <p></p>
+
+      <p style="font-size:25px"><span style="font-weight:bold">Client configuration file</span></p>
+      <a href="/ovpn" download>
+          <button type="submit" class="button">Download client configuration</button>
+      </a>
+
+      <br><br><br><br>
+
+      <p style="font-size:22px"><span style="font-weight:bold">Step 3.</span>Connect.</p>
+
+      <br><br><br>
+      <i>For detailed instructions on how to install/import/use the vpn on all OS see the link below</i>
+      <p></p>
+      <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect-aws-client-vpn-connect.html"><i>How to connect to aws client vpn</i></a>
+</div>
 {% endblock %}

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-#import dj_database_url
+import dj_database_url
 import environ
 from dotenv import load_dotenv
 
@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'govuk_template_base',
+    'govuk_template',
+    'govuk_forms',
     'vpnhome',
 ]
 
@@ -70,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'govuk_template_base.context_processors.govuk_template_base',
             ],
         },
     },
@@ -82,10 +86,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config()
 }
 
 AUTHENTICATION_BACKENDS = [
@@ -126,6 +127,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+GOVUK_SERVICE_SETTINGS = {
+    'name': 'DIT VPN Homepage',
+    'phase': 'beta',
+    'header_link_view_name': 'home_page',
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -143,3 +150,12 @@ AUTHBROKER_CLIENT_ID = os.getenv("AUTHBROKER_CLIENT_ID")
 AUTHBROKER_CLIENT_SECRET = os.getenv("AUTHBROKER_CLIENT_SECRET")
 AUTHBROKER_SCOPES = "read write"
 RESTRICT_ADMIN = env.bool("RESTRICT_ADMIN", True)
+VPN_CLIENT_CONFIG = os.getenv("VPN_CLIENT_CONFIG")
+
+VPN_CONFIG_DIR = os.path.join(BASE_DIR, "vpnhome", "templates", "downloads")
+
+if env("VPN_CLIENT_CONFIG", default=None):
+    if not os.path.exists(VPN_CONFIG_DIR):
+        os.makedirs(VPN_CONFIG_DIR)
+    with open(os.path.join(VPN_CONFIG_DIR, "aws-ci-vpn.ovpn"), "w") as f:
+        f.write(env("VPN_CLIENT_CONFIG"))
