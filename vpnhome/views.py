@@ -21,4 +21,6 @@ class ovpn_page(View):
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, content_type='text/plain')
+        response = render(request, self.template_name, content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename="vpn_client_config.ovpn"'
+        return response
