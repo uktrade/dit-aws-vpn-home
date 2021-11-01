@@ -151,6 +151,7 @@ AUTHBROKER_CLIENT_SECRET = os.getenv("AUTHBROKER_CLIENT_SECRET")
 AUTHBROKER_SCOPES = "read write"
 RESTRICT_ADMIN = env.bool("RESTRICT_ADMIN", True)
 VPN_CLIENT_CONFIG = os.getenv("VPN_CLIENT_CONFIG")
+CLIENT_VPN_ENDPOINT_ID = os.getenv("CLIENT_VPN_ENDPOINT_ID")
 
 VPN_CONFIG_DIR = os.path.join(BASE_DIR, "vpnhome", "templates", "downloads")
 
@@ -158,4 +159,4 @@ if env("VPN_CLIENT_CONFIG", default=None):
     if not os.path.exists(VPN_CONFIG_DIR):
         os.makedirs(VPN_CONFIG_DIR)
     with open(os.path.join(VPN_CONFIG_DIR, "aws-ci-vpn.ovpn"), "w") as f:
-        f.write(env("VPN_CLIENT_CONFIG"))
+        f.write(env("VPN_CLIENT_CONFIG").replace("CLIENT_VPN_ENDPOINT_ID", env("CLIENT_VPN_ENDPOINT_ID")))
