@@ -14,7 +14,7 @@ charset-normalizer==2.0.4
     # via requests
 dj-database-url==0.5.0
     # via -r requirements.in
-django==3.2.7
+django==3.2.12
     # via
     #   -r requirements.in
     #   django-govuk-forms
