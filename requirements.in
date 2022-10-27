@@ -1,5 +1,5 @@
 dj-database-url
-django==3.2.15
+django>=3.2.16
 django-environ
 django-jquery
 psycopg2-binary
@@ -14,3 +14,4 @@ libsass
 scss
 whitenoise
 gunicorn
+oauthlib==3.2.1
