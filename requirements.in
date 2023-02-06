@@ -14,7 +14,7 @@ libsass
 scss
 whitenoise
 gunicorn
-oauthlib==3.2.1
+oauthlib==3.2.2
 
 # Dependabot Fixes
 certifi==2022.12.7
